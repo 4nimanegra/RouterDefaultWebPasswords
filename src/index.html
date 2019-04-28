@@ -1,0 +1,117 @@
+<script src="passwords.js"></script>
+<script>
+
+	var i=0;
+	var ii=0;
+
+
+	function generate(){
+
+		while(trademark[i]){
+
+			option=document.createElement('option');
+			option.appendChild(document.createTextNode(trademark[i]));
+			option.value=i;
+
+			document.getElementById("trademark").appendChild(option);
+
+			i=i+1;
+
+		}
+
+		i=0;
+		ii=0;
+
+		while(pass[i][ii]){
+
+			option=document.createElement('option');
+			option.appendChild(document.createTextNode(pass[i][ii][0]));
+			option.value=ii;
+			option.id="opcion";
+
+			document.getElementById("type").appendChild(option);
+
+			ii=ii+1;
+
+		}
+
+		ii=0;
+
+		document.getElementById("username").value=pass[i][ii][1];
+		document.getElementById("password").value=pass[i][ii][2];
+
+	}
+
+	function selectTrademark(){
+
+		i=document.getElementById("trademark").value;
+	
+		while(document.getElementById("opcion")){
+
+			document.getElementById("opcion").remove();
+
+		}
+
+		ii=0;
+
+		while(pass[i][ii]){
+
+			option=document.createElement('option');
+			option.appendChild(document.createTextNode(pass[i][ii][0]));
+			option.value=ii;
+			option.id="opcion";
+
+			document.getElementById("type").appendChild(option);
+
+			ii=ii+1;
+
+		}
+
+		ii=0;	
+		document.getElementById("username").value=pass[i][ii][1];
+		document.getElementById("password").value=pass[i][ii][2];
+
+
+	}
+
+	function selectType(){
+
+		ii=document.getElementById("type").value;
+		document.getElementById("username").value=pass[i][ii][1];
+		document.getElementById("password").value=pass[i][ii][2];
+
+
+	}
+
+
+</script>
+<html>
+
+	<head></head>
+
+	<body>
+
+		<div align="center">
+		<h1>Router Default Web Password Database</h1>
+
+			<table>
+				<tr><td><b>Select router Trademark:</b></td><td>
+		<select id="trademark" onChange="selectTrademark();">
+
+		</select></td></tr>
+
+		<tr><td><b>Select router model:</b></td><td>
+		<select id="type" onChange="selectType();">
+
+		</select></td></tr>
+
+		<tr><td><b>User:</b></td><td><input id="username"></td></tr>
+		<tr><td><b>Password:</b></td><td><input id="password"></td></tr>
+		</div>
+	</body>
+	<script>
+
+		generate();
+
+	</script>
+</html>
